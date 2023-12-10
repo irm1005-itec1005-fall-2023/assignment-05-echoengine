@@ -1,40 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Set the page title -->
-    <title>Group Project</title>
+<html>
+<head>
+    <title>Quiz</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+          <li><a href="" id="course-home">Course Home</a></li>
+            <li class="dropdown">
+                <a href="">Progress</a>
+                <ul class="dropdown-content">
+                    <li><a href="">Awards</a></li>
+                    <li><a href="">Class progress</a></li>
+                    <li><a href="">Grades</a></li>
+                </ul>
+            </li>
+            <li><a href="">Help</a></li>
+           
+        </ul>
+    </nav>
 
-    <!-- Set the charset we're using to UTF-8 -->
-    <meta charset="UTF-8" />
+  <section>
+      <h1>The Quiz</h1>
+      <p>Make sure to take your time. No rush! Enjoy the quiz!.</p>
+  </section>
 
-    <!-- Set the screens default zoom / scale to 1 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <img src="./quizzz.jpg" alt="Quiz pic">
 
-    <!-- Specifies the document mode for Internet Explorer -->
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <div id="start-screen" class="start">
+      <h2>Time to test your Knowledge</h2>
+      <button id="start-btn">Start Quiz</button>
+  </div>
 
-    <!-- We are using a CSS Reset file to standardize browser default css -->
-    <link rel="stylesheet" href="./reset.css" />
 
-    <!-- This is where all of our awesome CSS code goes -->
-    <link rel="stylesheet" href="./style.css" />
-
-    <!-- Set the Favicon  -->
-    <link rel="icon" href="./images/favicon/rocket.svg" type="image/svg+xml" />
-  </head>
-  <body>
-    <!--
-
-      ADD YOUR GROUP PROJECT CODE
-
-      YOU MAY REMOVE THE BOILERPLATE CODE BELOW
-
-    -->
-    <main>
-      <div id="app"></div>
-    </main>
-
-    <!-- This is where we add our awesome JavaScript code -->
-    <script src="./script.js"></script>
-  </body>
+      <div id="quiz-container" class="hidden">
+        <div id="question"></div>
+        <div id="choices"></div>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
 </html>
+
+<!-- https://www.youtube.com/watch?v=eKo1NV1qxbc 
+this videow as used to help create the drop down menu effect 
+
+this video is used to add the glow button effect https://www.youtube.com/shorts/FYIX7Kc5JRo
+
+the background image: https://www.pinterest.ca/pin/663647695077190215/
+
+the quizzz.jpg image: https://edu.rsc.org/feature/the-grand-end-of-term-quiz/4012769.article
+--> 
