@@ -1,82 +1,82 @@
-//
-//  JS File
-//  YOU CAN REMOVE ALL OF THIS CODE AND START FRESH
-//
+let currentQuestionIndex = 0;
+let score = 0;
+const questions = [
+    {
+        question: "What is the correct way to use background colour?",
+        choices: ["background/colour", 
+                  "backgroundcolour", 
+                  "background-colour;", 
+                  "background-colour:"],
+        answer: "background-colour:"
+    },
+  {
+    question: "What is the capital of Spain?",
+    choices: ["Lisbon", "Barcelona", "Madrid", "Seville"],
+    answer: "Madrid"
+  },
+  {
+     question: "What is the capital of Iraq?",
+     choices: ["Mousal", "Basra", "Baghdad", "Erbil"],
+     answer: "Baghdad"
+  },
 
-//
-// Variables
-//
+  {
+     question: "What is 5 to the power of 2?",
+     choices: ["15", "10", "25", "30"],
+     answer: "25"
+  },
 
-// Constants
-const appID = "app";
-const headingText = "Develop. Preview. Ship.";
-const headingTextIcon = "🚀";
-const projectDueDate = "8 December 2023 11:59";
-
-// Variables
-let countdownDate = new Date(projectDueDate);
-
-// DOM Elements
-let appContainer = document.getElementById(appID);
-
-//
-// Functions
-//
-
-function calculateDaysLeft(countdownDate) {
-  const now = new Date().getTime();
-  const countdown = new Date(countdownDate).getTime();
-
-  console.log(countdown);
-
-  const difference = (countdown - now) / 1000;
+  
+];
 
 
-  // Countdown passed already
-  if (difference < 1) {
-    return null;
-  }
+document.getElementById("start-btn").addEventListener("click", function() {
+  document.getElementById("start-screen").classList.add("hidden");
+  document.getElementById("quiz-container").classList.add("start");
+  displayQuestion();
+});
+
+document.getElementById("quiz-container").classList.add("hidden");
 
 
-  const days = Math.floor(difference / (60 * 60 * 24));
 
-  return days;
+function displayQuestion() {
+    let question = questions[currentQuestionIndex];
+    document.getElementById("question").innerText = question.question;
+    let choicesContainer = document.getElementById("choices");
+    choicesContainer.innerHTML = "";
+    question.choices.forEach(choice => {
+        let button = document.createElement("button");
+        button.innerText = choice;
+        button.classList.add("choice");
+        button.addEventListener("click", () => selectAnswer(choice));
+        choicesContainer.appendChild(button);
+    });
 }
 
-// Add a heading to the app container
-function inititialise() {
-  // If anything is wrong with the app container then end
-  if (!appContainer) {
-    console.error("Error: Could not find app contianer");
-    return;
-  }
-
-  // Create an h1 and add it to our app
-  const h1 = document.createElement("h1");
-  const daysLeft = calculateDaysLeft(countdownDate);
-  let headingTextCalculated = headingText;
-
-  if (daysLeft > 1) {
-    headingTextCalculated = headingTextCalculated.concat(
-      " In ",
-      daysLeft.toString(),
-      " days "
-    );
-  }else if (daysLeft === 1) {
-    headingTextCalculated = headingTextCalculated.concat(
-      " Tomorrow"
-    );
-  }
-
-  h1.textContent = headingTextCalculated.concat(headingTextIcon);
-  appContainer.appendChild(h1);
-
-  // Init complete
-  console.log("App successfully initialised");
+function selectAnswer(choice) {
+    let question = questions[currentQuestionIndex];
+    if (choice === question.answer) {
+        score++;
+    }
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        displayQuestion();
+    } else {
+        showResults();
+    }
 }
 
-//
-// Inits & Event Listeners
-//
+function showResults() {
 
-inititialise();
+    document.getElementById("quiz-container").innerHTML = 
+
+        `<h1>Quiz Completed!</h1><p>Your score: ${score}/${questions.length}</p>`;
+}
+
+function nextQuestion() {
+    currentQuestionIndex++;
+    displayQuestion();
+}
+
+displayQuestion();
